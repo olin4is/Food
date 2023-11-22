@@ -1,0 +1,50 @@
+﻿<Window x:Class="Food.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Food"
+        mc:Ignorable="d"
+        Title="Рецепты" Height="550" Width="1000" Background="Honeydew">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Button Click="AddButton_Click" Height="45" Width="180" HorizontalAlignment="Left" Background="White" FontSize="16" FontWeight="Bold" Margin="25 15">Добавить рецепт</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBox Width="500" VerticalAlignment="Center" Margin="25 15" FontSize="16" Height="35"></TextBox>
+            <Button Margin="10 15 25 15" Width="90" Height="45" Background="White" FontSize="16" FontWeight="Bold">Поиск</Button>
+        </StackPanel>
+        <ListBox x:Name="RecipesList" Grid.Row="1" Grid.ColumnSpan="3" Margin="20 0"
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
+             BorderThickness="0" MouseDoubleClick="RecipesList_MouseDoubleClick" Background="Honeydew">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="0 10">
+                        <Image x:Name="Image" Width="250" Stretch="Fill" Height="250" Source="{Binding Path=Image}" Margin="0 0 15 0"></Image>
+                        <StackPanel Width="250">
+                            <TextBlock FontSize="26" Margin="0 50 0 0" TextWrapping="Wrap" FontWeight="Bold" Text="{Binding Path=Title}"></TextBlock>
+                            <TextBlock FontSize="16" FontWeight="Bold" Margin="0 10 0 0">Ингредиенты</TextBlock>
+                            <TextBlock TextWrapping="Wrap" FontSize="16" Text="{Binding Path=Ingredients}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Center" Margin="20 0 0 0">
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="Время приготовления"></TextBlock>
+                            <TextBlock FontSize="16" Margin="0 0 0 10" Text="{Binding Path=Time}">&#32;мин</TextBlock>
+                            <TextBlock FontSize="16" FontWeight="Bold" Text="Сложность"></TextBlock>
+                            <TextBlock FontSize="16" Text="{Binding Path=Complexity}">&#47;5</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
